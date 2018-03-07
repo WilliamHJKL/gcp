@@ -1,12 +1,24 @@
-GCP Sample Projects for Autocomplete 
+GCP Sample Projects for Autocomplete
 ========
 
-What I've done so far with this.
---------
+--- Create a project.
+gcloud projects create myproject
+gcloud config set project myproject
 
-- Forked the repo from https://github.com/rickcrawford/gcp.
-- Change reference to my repo. (SED is your friend)
+find . -type f -exec sed -i "s/nameofmyproject/nameofyourproject/g" {} \;
 
-- You need to create a project with a bucket that host the bestbuy files.
-- Then you need to populate a google datastore, the easyest way is to do it from the google console.
-- `go run tools/post/main.go`
+Deploy the apps in :
+gcp/appengine/default
+gcp/appengine/autocomplete/appengine
+
+The app works but no data ...
+So put the json.gz files in the bucket :
+{{bucketname}}/bestbuy/*.json.gz
+
+Run the scripts in :
+
+gcp/tools/post
+gcp/tools/publish
+
+The app shoud work :)
+
